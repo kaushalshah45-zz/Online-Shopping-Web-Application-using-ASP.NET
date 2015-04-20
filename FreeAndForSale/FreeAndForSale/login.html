@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="style/pure-min.css">
+    <link rel="stylesheet" type="text/css" href="style/marketing.css">
+    <link rel="stylesheet" type="text/css" href="style/side-menu.css">
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+
+</head>
+<body>
+    <div class="header">
+        <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+            <a style="color: white;font-size: 180%;text-decoration : none; vertical-align: middle" href="">UTD Free & 4 Sales</a>
+
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Help</a></li>
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Home</a></li>
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Register</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div style="margin-top:10%;margin-left:50%">
+        <form class="pure-form">
+            <fieldset>
+
+                <input type="text" id="uname" style="width:60%" placeholder="Username" maxlength="50" required><br><br>
+                <input type="password" id="pass" style="width:60%" placeholder="Password"><br><br>
+
+
+                <button type="button" id="submit" class="pure-button pure-button-primary">Sign in</button>
+            </fieldset>
+        </form>
+    </div>
+    <script>
+    $(document).ready(function () {
+
+        $("#submit").on('click', function () {
+
+            
+            //$(this).text('Hi');
+
+            var url_append = $("#uname").val() + "/" + $("#pass").val();
+            //document.write(url_append);
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:50934/api/login/" + url_append,
+                data: "",
+                contentType: "application/json; charset=utf-8",
+                processData: false,
+                dataType: "json",
+                success: function (resp) {
+                    // we have the response
+                    alert("Server said\n '" + resp + "'");
+                },
+                error: function (e) {
+                    alert('Error' + e);
+                }
+            });
+        });
+
+    });
+
+
+
+    </script>
+
+</body>
+</html>

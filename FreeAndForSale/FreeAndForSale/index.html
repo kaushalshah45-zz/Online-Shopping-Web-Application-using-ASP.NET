@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="style/pure-min.css">
+    <link rel="stylesheet" type="text/css" href="style/marketing.css">
+    <link rel="stylesheet" type="text/css" href="style/side-menu.css">
+    <style type="text/css">
+        #slideshow1, #slideshow2, #slideshow3, #slideshow4 {
+            position: relative;
+            height: 350px;
+        }
+
+            #slideshow1 IMG, #slideshow2 IMG, #slideshow3 IMG, #slideshow4 IMG {
+                position: absolute;
+                height: 200px;
+                width: 450px;
+                z-index: 8;
+            }
+
+                #slideshow1 IMG.active, #slideshow2 IMG.active, #slideshow3 IMG.active, #slideshow4 IMG.active {
+                    z-index: 10;
+                }
+
+                #slideshow1 IMG.last-active, #slideshow2 IMG.last-active, #slideshow3 IMG.last-active, #slideshow4 IMG.last-active {
+                    z-index: 9;
+                }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+            <a style="color: white;font-size: 180%;text-decoration : none; vertical-align: middle" href="">UTD Free & 4 Sales</a>
+
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Help</a></li>
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Register</a></li>
+                <li class="pure-menu-item"><a href="login.html" class="pure-menu-link">Sign In</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="menu">
+        <div class="pure-menu">
+
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item"><input style="height:30px;margin-top:5px;margin-left:2px;" type="text" /> <a href="#" id="search" class="pure-menu-link">Search Q</a></li>
+                <li class="pure-menu-item"><a href="#" id="lastestproducts" class="pure-menu-link">Latest Products</a></li>
+                <li class="pure-menu-item"><a href="#" id="trendingbids" class="pure-menu-link">Trending bids</a></li>
+                <li class="pure-menu-item"><a href="#" id="prductsfromutd" class="pure-menu-link">Products from UTD</a></li>
+                <li class="pure-menu-item"><a href="#" id="pp" class="pure-menu-link">Privacy Policy</a></li>
+                <li class="pure-menu-item"><a href="#" id="termsofuse" class="pure-menu-link">Terms of use</a></li>
+                <li class="pure-menu-item"><a href="#" id="howitworks" class="pure-menu-link">How it Works?</a></li>
+                <li class="pure-menu-item"><a href="#" id="about" class="pure-menu-link">About</a></li>
+
+                <li class="pure-menu-item menu-item-divided pure-menu-selected">
+                    <a href="#" class="pure-menu-link">Services</a>
+                </li>
+
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div onclick="funt()" id="slideshow1" style="left: 20%; margin-top: 5%; position: fixed; ">
+        <img src="image/furn/1.jpg" alt="" class="active" />
+        <img src="image/furn/2.jpg" alt="" />
+        <img src="image/furn/3.jpg" alt="" />
+    </div>
+
+    <div id="slideshow2" style="left: 60%; margin-top: 5%; position: fixed; ">
+        <img src="image/elec/1.jpg" alt="" class="active" />
+        <img src="image/elec/2.jpg" alt="" />
+        <img src="image/elec/3.jpg" alt="" />
+    </div>
+    <div id="slideshow3" style="left: 20%; margin-top: 25%; position: fixed; ">
+        <img src="image/cloth/1.jpg" alt="" class="active" />
+        <img src="image/cloth/2.jpg" alt="" />
+        <img src="image/cloth/3.jpg" alt="" />
+    </div>
+    <div id="slideshow4" style="left: 60%; margin-top: 25%; position: fixed; ">
+        <img src="image/other/1.jpg" alt="" class="active" />
+        <img src="image/other/2.jpg" alt="" />
+        <img src="image/other/3.jpg" alt="" />
+    </div>
+
+
+
+    <script src="Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+    function funt(){
+        alert("tezt");
+    }
+    </script>
+    <script>
+    function slideSwitch1() {
+    var $active = $('#slideshow1 IMG.active');
+    if ( $active.length == 0 ) $active = $('#slideshow1 IMG:last');
+    var $next =  $active.next().length ? $active.next()
+        : $('#slideshow1 IMG:first');
+    $active.addClass('last-active');
+    $next.css({opacity: 0.0})
+        .addClass('active')
+        .animate({opacity: 1.0}, 1000, function() {
+            $active.removeClass('active last-active');
+        });
+    }
+    function slideSwitch2() {
+    var $active = $('#slideshow2 IMG.active');
+    if ( $active.length == 0 ) $active = $('#slideshow2 IMG:last');
+    var $next =  $active.next().length ? $active.next()
+        : $('#slideshow2 IMG:first');
+    $active.addClass('last-active');
+    $next.css({opacity: 0.0})
+        .addClass('active')
+        .animate({opacity: 1.0}, 1000, function() {
+            $active.removeClass('active last-active');
+        });
+    }
+    function slideSwitch3() {
+    var $active = $('#slideshow3 IMG.active');
+    if ( $active.length == 0 ) $active = $('#slideshow3 IMG:last');
+    var $next =  $active.next().length ? $active.next()
+        : $('#slideshow3 IMG:first');
+    $active.addClass('last-active');
+    $next.css({opacity: 0.0})
+        .addClass('active')
+        .animate({opacity: 1.0}, 1000, function() {
+            $active.removeClass('active last-active');
+        });
+    }
+    function slideSwitch4() {
+    var $active = $('#slideshow4 IMG.active');
+    if ( $active.length == 0 ) $active = $('#slideshow4 IMG:last');
+    var $next =  $active.next().length ? $active.next()
+        : $('#slideshow4 IMG:first');
+    $active.addClass('last-active');
+    $next.css({opacity: 0.0})
+        .addClass('active')
+        .animate({opacity: 1.0}, 1000, function() {
+            $active.removeClass('active last-active');
+        });
+    }
+    $(function() {
+        setInterval( "slideSwitch1(),slideSwitch2(),slideSwitch3(),slideSwitch4()", 2000 );
+    });
+    </script>
+
+    
+</body>
+</html>
