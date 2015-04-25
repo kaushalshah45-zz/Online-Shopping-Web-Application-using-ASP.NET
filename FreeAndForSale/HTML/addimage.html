@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../style/pure-min.css">
+    <link rel="stylesheet" type="text/css" href="../style/marketing.css">
+    <link rel="stylesheet" type="text/css" href="../style/side-menu.css">
+    <script src="../Scripts/jquery-1.10.2.min.js"></script> 
+
+</head>
+<body>
+    <center>
+        <br><br>
+        <form style="margin-top:5%;" class="pure-form">
+            <input id="img1" type="file" style="width:20%;" class="pure-input-rounded">
+            <button id="btn1" type="button" style="margin-bottom:1em;margin-top:1%;" class="pure-button">Upload 1st photo</button><br>
+            <input id="img2" type="file" style="width:20%;" class="pure-input-rounded">
+            <button id="btn2" type="button" style="margin-bottom:1em;margin-top:1%;" class="pure-button">Upload 2nd photo</button>
+        </form>
+    </center>
+    <script>
+        $(document).ready(function () {
+
+
+
+            $("#btn1").click(function () {
+                var files = $("#img1").get(0).files;
+                if (files.length > 0) {
+                    var data = new FormData();
+                    for (i = 0; i < files.length; i++) {
+                        data.append("file" + i, files[i]);
+                    }
+                    $.ajax({
+                        type: "PUT",
+                        url: "/api/addproduct/addimage",
+                        contentType: false,
+                        processData: false,
+                        data: data,
+                        success: function (results) {
+                            for (i = 0; i < results.length; i++) {
+                                alert(results[i]);
+                            }
+                        }
+                    });
+                }
+
+            });
+
+            
+
+
+        });
+
+
+    </script>
+</body>
+</html>
