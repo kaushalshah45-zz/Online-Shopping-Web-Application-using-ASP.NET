@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../style/pure-min.css">
+    <link rel="stylesheet" type="text/css" href="../style/marketing.css">
+    <link rel="stylesheet" type="text/css" href="../style/side-menu.css">
+
+</head>
+<body>
+    <div class="header">
+        <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+            <a style="color: white;font-size: 180%;text-decoration : none; vertical-align: middle" href="">UTD Free and for Sales</a>
+
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item "><a href="loggedin.html" class="pure-menu-link">Home</a></li>
+                <li class="pure-menu-item pure-menu-selected"><a href="sell_product.html" class="pure-menu-link">Sell Product</a></li>
+                <li class="pure-menu-item"><a href="login.html" class="pure-menu-link">Sign Out</a></li>
+            </ul>
+        </div>
+    </div>
+    <span style="top:60px;left:10%;position:relative;">
+        <form class="pure-form ">
+
+            <input id="pname" type="text" style="width:20%;" placeholder="Product title">
+
+            <br>
+            <select id="category" style="width:20%;height:initial;">
+                <option style="width:100%;">Select a category..</option>
+                <option>Electronics</option>
+                <option>Furniture</option>
+                <option>Clothing</option>
+                <option>Accessories</option>
+                <option>Other</option>
+            </select><br>
+            <input id="price" type="text" style="width:20%" placeholder="Price $$$"><br>
+
+            <textarea id="pinfo" style="width:20%;border: 2px solid #ddd;box-shadow: none;margin-bottom: 1em;" rows="4" cols="50" placeholder="product description.." required=""></textarea><br>
+            
+            &nbspDelivery type:<br>
+            <input type="radio" name="delivery" id="on" style="width:5%;" value="On-Campus" checked>On campus &nbsp&nbsp&nbsp&nbsp&nbsp
+            <input type="radio" name="delivery" id="out" style="width:5%" value="Outside-Campus">Outside campus<br>
+
+            
+
+
+            <br><br>
+            <button id="upload" type="button" class="pure-button pure-button-primary">Upload Product</button>
+            <button id="reset" type="reset" class="pure-button pure-button-primary">Reset form</button><br><br>
+        </form>
+
+    </span>
+    <span style="top:50px;left:50%;position:relative;">
+
+    </span>
+    <style type="text/css">
+        .hidden {
+            visibility: hidden;
+        }
+
+        .unhide {
+            visibility: visible;
+        }
+    </style>
+    <script src="../Scripts/jquery-1.10.2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $('#img1').blur(function () {
+
+                $('#img1_text').text($('#img1').val());
+
+            });
+            $('#img2').blur(function () {
+
+                $('#img2_text').text($('#img2').val());
+
+            });
+            $("#upload").on('click', function () {
+                
+
+                var pname = $("#pname").val();
+                var category = $("#category").val();
+                var price = $("#price").val();
+                var desp = $("#pinfo").val();
+                var delivery = $('input:radio[name=delivery]:checked').val();
+                var date1 = new Date().toISOString().substring(0, 10);
+                $.ajax({
+                    type: "PUT",
+                    url: "/api/getusername",
+                    success: function (resp) {
+                        // we have the response
+                        //alert("Server said\n '" + resp + "'");
+                        var usr = resp;
+                        var product = { username: usr, productName: pname, category: category, price: price, date: date1, productInfo: desp, deliveryType: delivery };
+                        $.ajax({
+                            type: "PUT",
+                            data: JSON.stringify(product),
+                            url: "/api/addproduct/",
+                            contentType: "application/json",
+
+                            success: function (resp) {
+
+                                location.href = "addimage.html";
+                            },
+                            error: function (e) {
+                                alert('Server is busy. Please try again !!');
+                            }
+                        });
+                    },
+                    error: function (e) {
+                        alert('Error' + e);
+                    }
+                });
+                
+                
+                
+                
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="../style/pure-min.css">
+    <link rel="stylesheet" type="text/css" href="../style/marketing.css">
+    <link rel="stylesheet" type="text/css" href="../style/side-menu.css">
+    <script src="../Scripts/jquery-1.10.2.min.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+            <a style="color: white;font-size: 180%;text-decoration : none; vertical-align: middle" href="">UTD Free and for Sales</a>
+
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item "><a href="index.html" class="pure-menu-link">Home</a></li>
+                <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Register</a></li>
+                <li class="pure-menu-item"><a href="login.html" class="pure-menu-link">Sign In</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div style="top:25%;left:10%;position:fixed;">
+        <text style="font-size:18px;">
+            Sign into our Web Site and avail different oppoutunities to <br>
+            explore various products and upload some of your product to sell.<br>
+            Our portal will help you maintain your privacy and provide <br>
+            you with best options to sell your products. Also you can <br>
+            preview products which UTD surplus has to offer.<br>
+            Make the most of it :)
+
+        </text>
+
+    </div>
+    <style type="text/css">
+        .invalid {
+            background-image: url(image/invalid.png);
+            background-position: right top;
+            background-repeat: no-repeat;
+            background-color: #FFCCCC;
+        }
+
+        .valid {
+            background-image: url(image/valid.png);
+            background-position: right top;
+            background-repeat: no-repeat;
+            background-color: #FFFFFF;
+        }
+    </style>
+
+    <span style="top:50px;left:50%;position:relative;">
+        <form id="register_form" class="pure-form">
+            <input id="fname" type="text" style="width:20%" placeholder="First name"><br>
+            <input id="lname" type="text" style="width:20%" placeholder="Last name"><text id="name_valid"></text><br>
+            <input id="uname" type="text" style="width:20%" placeholder="Enter your NetID" maxlength="9" pattern="[a-z][a-z][a-z][0-9][0-9][0-9][0-9][0-9][0-9]"><text style="vertical-align: text-bottom;">@utdallas.edu</text> <br>
+            <input id="pass" type="text" style="width:20%" placeholder="Password" required><br>
+            <input id="rtpass" type="text" style="width:20%" placeholder="Re-type Password" required><text id="pass_valid" style="vertical-align: text-bottom;"></text><br>
+            
+            <input id="phone" type="text" pattern="[0-9]+" style="width:20%" maxlength="10" placeholder="Enter 10 digit Mobile number" ><br>
+            &nbspYour Sex:<br>
+            <input type="radio" name="sex" style="width:10%;" value="male" checked>Male &nbsp&nbsp&nbsp&nbsp&nbsp
+            <input type="radio" name="sex" style="width:10%" value="female">Female<br>
+            &nbspWho are you:<br>
+            <input type="radio" name="type" style="width:10%" value="student" checked>Student &nbsp
+            <input type="radio" name="type" style="width:10%" value="staff">Staff
+            <br><br>
+            <button id="submit" type="button" class="pure-button pure-button-primary">Register</button>
+            <button id="reset" type="reset" class="pure-button pure-button-primary">Reset</button>
+        </form>
+    </span>
+    <script src="js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#rtpass").keyup(function(){
+                if($("#pass").val() == $("#rtpass").val()){
+                    $("#pass").removeClass("invalid");
+                    $("#rtpass").removeClass("invalid");
+                    $("#pass_valid").text("   password matched!")
+                    $("#pass").addClass("valid");
+                    $("#rtpass").addClass("valid");
+                }
+            });
+            $("#rtpass").keyup(function(){
+                if($("#pass").val() != $("#rtpass").val()){
+                    $("#pass").removeClass("valid");
+                    $("#rtpass").removeClass("valid");
+                    $("#pass_valid").text("   password not matched!")
+                    $("#pass").addClass("invalid");
+                    $("#rtpass").addClass("invalid");
+                }
+            });
+            $("#lname").keyup(function(){
+                if($("#lname").val() == $("#fname").val()){
+                    $("#fname").addClass("invalid");
+                    $("#lname").addClass("invalid");
+                    $("#name_valid").text("  Enter different Lname!")
+                }
+            });
+            $("#lname").keyup(function(){
+                if ($("#lname").val() != $("#fname").val()) {
+                    $("#fname").removeClass("invalid");
+                    $("#lname").removeClass("invalid");
+                    $("#name_valid").text(" ");   
+                    $("#fname").addClass("valid");
+                    $("#lname").addClass("valid");
+
+                }
+            });
+            $(document).keypress(function(event) {
+            if (event.keyCode == 13) {
+                event.preventDefault();
+                var usr_name = $("#uname").val();
+                var usr_pass = $("#pass").val();
+                var fname = $("#fname").val();
+                var lname = $("#lname").val();
+                var stdtype = $('input:radio[name=type]:checked').val();
+                var sex = $('input:radio[name=sex]:checked').val();
+                var no = $("#phone").val();
+                
+                var login_details = { username: usr_name, password: usr_pass, firstName: fname, lastName: lname, userType: stdtype, sex: sex, phoneNumber: no };
+                //alert(login_details);
+                $.ajax({
+                    type: "PUT",
+                    data: JSON.stringify(login_details),
+                    url: "/api/register/",
+                    contentType: "application/json",
+                    success: function (resp) {
+                        // we have the response
+                        alert("Successfully Signed up");
+                        location.href = "login.html";
+                    },
+                    error: function (e) {
+                        alert('Server is busy. Please try again. We appreciate your patience !!');
+                    }
+                });
+                
+            }
+        });
+            $("#submit").on('click', function () {
+
+                var usr_name = $("#uname").val();
+                var usr_pass = $("#pass").val();
+                var fname = $("#fname").val();
+                var lname = $("#lname").val();
+                var stdtype = $('input:radio[name=type]:checked').val();
+                var sex = $('input:radio[name=sex]:checked').val();
+                var no = $("#phone").val();
+                
+                var login_details = { username: usr_name, password: usr_pass, firstName: fname, lastName: lname, userType: stdtype, sex: sex, phoneNumber: no };
+                //alert(login_details);
+                $.ajax({
+                    type: "PUT",
+                    data: JSON.stringify(login_details),
+                    url: "/api/register/",
+                    contentType: "application/json",
+                    success: function (resp) {
+                        // we have the response
+                        alert("Successfully Signed up");
+                        location.href = "login.html";
+                    },
+                    error: function (e) {
+                        alert('Server is busy. Please try again. We appreciate your patience !!');
+                    }
+                });
+
+
+            });
+
+        });
+    </script>
+</body>
+</html>

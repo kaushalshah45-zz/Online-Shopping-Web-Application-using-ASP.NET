@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../style/pure-min.css">
+    <link rel="stylesheet" type="text/css" href="../style/marketing.css">
+    <link rel="stylesheet" type="text/css" href="../style/side-menu.css">
+    <script src="../Scripts/jquery-1.10.2.min.js"></script>
+
+</head>
+<body>
+    <div class="header">
+        <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+            <a style="color: white;font-size: 180%;text-decoration : none; vertical-align: middle" href="">UTD Free & For Sales</a>
+
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Help</a></li>
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Home</a></li>
+                <li class="pure-menu-item"><a href="register.html" class="pure-menu-link">Register</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div style="margin-top:10%;margin-left:50%">
+        <form class="pure-form">
+            <fieldset>
+
+                <input type="text" id="uname" style="width:60%" placeholder="Username" maxlength="50" required><br><br>
+                <input type="password" id="pass" style="width:60%" placeholder="Password"><br><br>                       
+                <button type="button" id="submit1" class="pure-button pure-button-primary">Login</button>
+              
+            </fieldset>
+        </form>
+    </div>
+    <script>
+        $(document).ready(function () {
+
+           
+
+
+            $(document).keypress(function(event) {
+            if (event.keyCode == 13) {
+                event.preventDefault();
+                 var usr_name = $("#uname").val();
+                var usr_pass = $("#pass").val();
+                var login_details = { username: usr_name, password: usr_pass };
+                $.ajax({
+                    type: "POST",
+                    data: JSON.stringify(login_details),
+                    url: "/api/login/",
+                    contentType: "application/json",
+                    success: function (resp) {
+                        // we have the response
+                        //alert("Server said\n '" + resp + "'");
+                        if (resp == true)
+                            location.href = "loggedin.html";
+                        else
+                            alert("Invalid username or password !!");
+                    },
+                    error: function (e) {
+                        
+                    }
+                });
+                
+            }
+        });
+            $("#submit1").on('click', function () {
+                var usr_name = $("#uname").val();
+                var usr_pass = $("#pass").val();
+                var login_details = { username: usr_name, password: usr_pass };
+                $.ajax({
+                    type: "POST",
+                    data: JSON.stringify(login_details),
+                    url: "/api/login/",
+                    contentType: "application/json",
+                    success: function (resp) {
+                        // we have the response
+                        //alert("Server said\n '" + resp + "'");
+                        if (resp == true)
+                            location.href = "loggedin.html";
+                        else
+                            alert("Invalid username or password !!");
+                    },
+                    error: function (e) {
+                        
+                    }
+                });
+
+
+            });
+
+            
+
+
+        });
+
+
+
+    </script>
+
+</body>
+</html>

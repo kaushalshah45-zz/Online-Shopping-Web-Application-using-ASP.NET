@@ -1,0 +1,554 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="../style/pure-min.css">
+    <link rel="stylesheet" type="text/css" href="../style/marketing.css">
+    <link rel="stylesheet" type="text/css" href="../style/side-menu.css">
+    <script src="../Scripts/jquery-1.10.2.js"></script>
+    <style type="text/css">
+        #slideshow1, #slideshow2, #slideshow3, #slideshow4 {
+            position: relative;
+            height: 350px;
+        }
+
+        #slideshow1 IMG, #slideshow2 IMG, #slideshow3 IMG, #slideshow4 IMG {
+                position: absolute;
+                height: 200px;
+                width: 450px;
+                z-index: 8;
+       }
+       #slideshow1 IMG.active, #slideshow2 IMG.active, #slideshow3 IMG.active, #slideshow4 IMG.active {
+                    z-index: 10;
+      }
+
+      #slideshow1 IMG.last-active, #slideshow2 IMG.last-active, #slideshow3 IMG.last-active, #slideshow4 IMG.last-active {
+                    z-index: 9;
+      }
+      .container {
+  position: relative;
+  height: 300px;
+}
+.img1 {
+  position: absolute;
+  left: 18%;
+  width: 200px;
+}
+.img2 {
+  position: absolute;
+  left: 40%;
+  width: 200px;
+}
+.section {
+  
+  margin-left: 63%;
+  margin-right: 5%;
+  margin-top: 6%;
+}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+            <a style="color: white;font-size: 180%;text-decoration : none; vertical-align: middle" href="">UTD Free & For Sale</a>
+
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Help</a></li>
+                <li class="pure-menu-item"><a href="register.html" class="pure-menu-link">Register</a></li>
+                <li class="pure-menu-item"><a href="login.html" class="pure-menu-link">Sign In</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="menu">
+        <div class="pure-menu">
+
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item"><input style="height:30px;margin-top:5px;margin-left:2px;" type="text" id="search_bar"/> <a href="#" id="search" class="pure-menu-link">Search </a></li>
+                
+                <li class="pure-menu-item"><a href="../html/howitworks.html" id="howitworks" class="pure-menu-link">How it Works?</a></li>
+                <li class="pure-menu-item"><a href="../html/about.html" id="about" class="pure-menu-link">About</a></li>
+
+              
+            </ul>
+        </div>
+    </div>
+    <div id="display">
+    <p id="slideshow1"  class="pre furniture" style="left: 20%; margin-top: 5%; position: fixed; ">
+        <img src="../image/furn/1.jpg" alt="" class="active" />
+        <img src="../image/furn/2.jpg" alt="" />
+        <img src="../image/furn/3.jpg" alt="" />
+    </p>
+
+    <p id="slideshow2" class="pre electronics"  style="left: 60%; margin-top: 5%; position: fixed; ">
+        <img src="../image/elec/1.jpg" alt="" class="active" />
+        <img src="../image/elec/2.jpg" alt="" />
+        <img src="../image/elec/3.jpg" alt="" />
+    </p>
+    <p id="slideshow3" class ="pre clothing"  style="left: 20%; margin-top: 25%; position: fixed; ">
+        <img src="../image/cloth/1.jpg" alt="" class="active" />
+        <img src="../image/cloth/2.jpg" alt="" />
+        <img src="../image/cloth/3.jpg" alt="" />
+    </p>
+    <p id="slideshow4" class="pre other"  style="left: 60%; margin-top: 25%; position: fixed; ">
+        <img src="../image/other/1.jpg" alt="" class="active" />
+        <img src="../image/other/2.jpg" alt="" />
+        <img src="../image/other/3.jpg" alt="" />
+    </p>
+    </div>
+
+
+    
+    
+    <script>
+    function slideSwitch1() {
+    var $active = $('#slideshow1 IMG.active');
+    if ( $active.length == 0 ) $active = $('#slideshow1 IMG:last');
+    var $next =  $active.next().length ? $active.next()
+        : $('#slideshow1 IMG:first');
+    $active.addClass('last-active');
+    $next.css({opacity: 0.0})
+        .addClass('active')
+        .animate({opacity: 1.0}, 1000, function() {
+            $active.removeClass('active last-active');
+        });
+    }
+    function slideSwitch2() {
+    var $active = $('#slideshow2 IMG.active');
+    if ( $active.length == 0 ) $active = $('#slideshow2 IMG:last');
+    var $next =  $active.next().length ? $active.next()
+        : $('#slideshow2 IMG:first');
+    $active.addClass('last-active');
+    $next.css({opacity: 0.0})
+        .addClass('active')
+        .animate({opacity: 1.0}, 1000, function() {
+            $active.removeClass('active last-active');
+        });
+    }
+    function slideSwitch3() {
+    var $active = $('#slideshow3 IMG.active');
+    if ( $active.length == 0 ) $active = $('#slideshow3 IMG:last');
+    var $next =  $active.next().length ? $active.next()
+        : $('#slideshow3 IMG:first');
+    $active.addClass('last-active');
+    $next.css({opacity: 0.0})
+        .addClass('active')
+        .animate({opacity: 1.0}, 1000, function() {
+            $active.removeClass('active last-active');
+        });
+    }
+    function slideSwitch4() {
+    var $active = $('#slideshow4 IMG.active');
+    if ( $active.length == 0 ) $active = $('#slideshow4 IMG:last');
+    var $next =  $active.next().length ? $active.next()
+        : $('#slideshow4 IMG:first');
+    $active.addClass('last-active');
+    $next.css({opacity: 0.0})
+        .addClass('active')
+        .animate({opacity: 1.0}, 1000, function() {
+            $active.removeClass('active last-active');
+        });
+    }
+    $(function() {
+        setInterval( "slideSwitch1(),slideSwitch2(),slideSwitch3(),slideSwitch4()", 2000 );
+    });
+    </script>
+       
+
+    <script>
+        $(".electronics").on('click', function () {
+            
+            $(".pre").remove();
+
+            var data = $.ajax({
+                type: "GET",
+                url: "/api/getproducts/2",
+                global: false,
+                async: false,
+                dataType: 'json',
+                success: function (resp) {
+                    // we have the response
+                    // alert("Server said\n '" + resp + "'");
+                    return resp;
+                },
+                error: function (e) {
+                    alert('Server is busy. Please try again !!');
+                }
+            }).responseText;
+
+
+
+            var json = $.parseJSON(data);
+            var pname = "productName";
+            var category = "category";
+            var pinfo = "productInfo";
+            var dtype = "deliveryType";
+            var price = "price";
+            var user = "username";
+            var id = "productID";
+            $(json).each(function (i, val) {
+                
+
+                $.each(val, function (k, v) {
+
+                    if (k == pname)
+                        pname = v;
+                    if (k == category)
+                        category = v;
+                    if (k == pinfo)
+                        pinfo = v;
+                    if (k == dtype)
+                        dtype = v;
+                    if (k == user) {
+                        user = v;
+                        emailid = user + "@utdallas.edu";
+                    }
+                    if (k == price)
+                        price = v;
+                    if (k == id)
+                        id = v;
+
+                    //  alert(pname + category + pinfo);
+                    //document.write(k + " : " + v);
+                });
+                //alert(pname + price);
+                display(pname, pinfo, category, price, emailid, dtype, id);
+            });
+
+        });
+
+        $(".furniture").on('click', function () {
+
+            $(".pre").remove();
+
+            var data = $.ajax({
+                type: "GET",
+                url: "/api/getproducts/1",
+                global: false,
+                async: false,
+                dataType: 'json',
+                success: function (resp) {
+                    // we have the response
+                    // alert("Server said\n '" + resp + "'");
+                    return resp;
+                },
+                error: function (e) {
+                    alert('Server is busy. Please try again !!');
+                }
+            }).responseText;
+
+
+
+            var json = $.parseJSON(data);
+           
+            $(json).each(function (i, val) {
+                var pname = "productName";
+                var category = "category";
+                var pinfo = "productInfo";
+                var dtype = "deliveryType";
+                var price = "price";
+                var user = "username";
+                var id = "productID";
+
+                $.each(val, function (k, v) {
+
+                    if (k == pname)
+                        pname = v;
+                    if (k == category)
+                        category = v;
+                    if (k == pinfo)
+                        pinfo = v;
+                    if (k == dtype)
+                        dtype = v;
+                    if (k == user) {
+                        user = v;
+                        emailid = user + "@utdallas.edu";
+                    }
+                    if (k == price)
+                        price = v;
+                    if (k == id)
+                        id = v;
+
+                    //  alert(pname + category + pinfo);
+                    //document.write(k + " : " + v);
+                });
+                //alert(pname + price);
+                display(pname, pinfo, category, price, emailid, dtype, id);
+            });
+
+        });
+
+        $(".clothing").on('click', function () {
+
+            $(".pre").remove();
+
+            var data = $.ajax({
+                type: "GET",
+                url: "/api/getproducts/3",
+                global: false,
+                async: false,
+                dataType: 'json',
+                success: function (resp) {
+                    // we have the response
+                    // alert("Server said\n '" + resp + "'");
+                    return resp;
+                },
+                error: function (e) {
+                    alert('Server is busy. Please try again !!');
+                }
+            }).responseText;
+
+            //document.write(data);
+            var id = "productID";
+            var pname = "productName";
+            var category = "category";
+            var pinfo = "productInfo";
+            var dtype = "deliveryType";
+            var price = "price";
+            var user = "username";
+            var json = $.parseJSON(data);
+            $(json).each(function (i, val) {
+                
+                 
+
+                $.each(val, function (k, v) {
+
+                    if (k == pname)
+                        pname = v;
+                    if (k == category)
+                        category = v;
+                    if (k == pinfo)
+                        pinfo = v;
+                    if (k == dtype)
+                        dtype = v;
+                    if (k == user) {
+                        user = v;
+                        emailid = user + "@utdallas.edu";
+                    }
+                    if (k == price)
+                        price = v;
+                    if (k == id)
+                        id = v;
+              
+                });
+                
+                
+                
+                           
+
+            });
+            
+            display(pname, pinfo, category, price, emailid, dtype,id);
+        });
+            
+       
+
+        $(".other").on('click', function () {
+
+            $(".pre").remove();
+
+            var data = $.ajax({
+                type: "GET",
+                url: "/api/getproducts/5",
+                global: false,
+                async: false,
+                dataType: 'json',
+                success: function (resp) {
+                    // we have the response
+                    // alert("Server said\n '" + resp + "'");
+                    return resp;
+                },
+                error: function (e) {
+                    alert('Server is busy. Please try again !!');
+                }
+            }).responseText;
+
+
+
+            var json = $.parseJSON(data);
+            //document.write(json);
+            var id = "productID";
+            var pname = "productName";
+            var category = "category";
+            var pinfo = "productInfo";
+            var dtype = "deliveryType";
+            var price = "price";
+            var user = "username";
+            $(json).each(function (i, val) {
+                
+
+                $.each(val, function (k, v) {
+
+                    if (k == pname)
+                        pname = v;
+                    if (k == category)
+                        category = v;
+                    if (k == pinfo)
+                        pinfo = v;
+                    if (k == dtype)
+                        dtype = v;
+                    if (k == user) {
+                        user = v;
+                        emailid = user + "@utdallas.edu";
+                    }
+                    if (k == price)
+                        price = v;
+                    if (k == id)
+                        id = v;
+
+                    //  alert(pname + category + pinfo);
+                    //document.write(k + " : " + v);
+                });
+                //alert(pname + price);
+                display(pname, pinfo, category, price, emailid, dtype, id);
+            });
+
+        });
+     
+        $("#search").on('click', function () {
+
+            
+            var key = $("#search_bar").val();
+            //alert(key);
+            
+            $(".pre").remove();
+
+                var data = $.ajax({
+                type: "GET",
+                url: "/api/getproducts/search/" + key,
+                global: false,
+                async: false,
+                dataType: 'json',
+                success: function (resp) {
+                    // we have the response
+                   // alert("Server said\n '" + resp + "'");
+                    return resp;
+                },
+                error: function (e) {
+                    alert('Server is busy. Please try again !!');
+                }
+            }).responseText;
+            
+                
+            
+                var json = $.parseJSON(data);
+                //document.write(data);
+               
+            $(json).each(function (i, val) {
+                var id = "productID";
+                var pname = "productName";
+                var category = "category";
+                var pinfo = "productInfo";
+                var dtype = "deliveryType";
+                var price = "price";
+                var user = "username";
+                var id = "productID";
+                
+                $.each(val, function (k, v) {
+                    
+                     if (k == pname)
+                        pname = v;
+                    if (k == category)
+                        category = v;
+                    if (k == pinfo)
+                        pinfo = v;
+                    if (k == dtype)
+                        dtype = v;
+                    if (k == user) {
+                        user = v;
+                        emailid = user + "@utdallas.edu";
+                    }   
+                    if (k == price)
+                        price = v;
+                    if (k == id)
+                        id = v;
+                    
+                  //  alert(pname + category + pinfo);
+                    //document.write(k + " : " + v);
+                });
+                //alert(pname + price);
+                display(pname, pinfo, category, price, emailid, dtype, id);
+            });
+
+            
+        });
+
+        $(document).keypress(function(event) {
+            if (event.keyCode == 13) {
+                event.preventDefault();
+                var key = $("#search_bar").val();
+                    //alert(key);
+                    
+                $(".pre").remove();
+
+                    var data = $.ajax({
+                    type: "GET",
+                    url: "/api/getproducts/search/" + key,
+                    global: false,
+                    async: false,
+                    dataType: 'json',
+                    success: function (resp) {
+                        // we have the response
+                       // alert("Server said\n '" + resp + "'");
+                        return resp;
+                    },
+                    error: function (e) {
+                        alert('Server is busy. Please try again !!');
+                    }
+                }).responseText;
+                
+                    
+                
+                    var json = $.parseJSON(data);
+                    //document.write(data);
+                   
+                $(json).each(function (i, val) {
+                    var id = "productID";
+                    var pname = "productName";
+                    var category = "category";
+                    var pinfo = "productInfo";
+                    var dtype = "deliveryType";
+                    var price = "price";
+                    var user = "username";
+                    var id = "productID";
+                    
+                    $.each(val, function (k, v) {
+                        
+                         if (k == pname)
+                            pname = v;
+                        if (k == category)
+                            category = v;
+                        if (k == pinfo)
+                            pinfo = v;
+                        if (k == dtype)
+                            dtype = v;
+                        if (k == user) {
+                            user = v;
+                            emailid = user + "@utdallas.edu";
+                        }   
+                        if (k == price)
+                            price = v;
+                        if (k == id)
+                            id = v;
+                        
+                      //  alert(pname + category + pinfo);
+                        //document.write(k + " : " + v);
+                    });
+                    //alert(pname + price);
+                    display(pname, pinfo, category, price, emailid, dtype, id);
+                });
+            }
+        });
+        function display(pname, pinfo, category, price, emailid, dtype, id) {
+           
+            var s1 = "/api/getimage/" + id + "/" + 1;
+            var s2 = "/api/getimage/" + id + "/" + 2;
+            var add = '<div class="container pre" id="s"><div class="img1"><img src="'+ s1 +'" style="display: inline;width:100%" ></div><div class="img2"><img src="'+ s2 +'"  style="display: inline;width:100%" ></div><div class="section"><h2><text>' + pname + '</text></h2><h4><text>' + pinfo + '</text></h4><h4 style="display: inline;">Price :$</h4><text>' + price + '</text></h4><br><h4 style="display: inline;">Category :</h4><text>' + category +  '</text><br><h4 style="display: inline;">Contact Details :</h4><text>' + emailid + '</text><br><h4 style="display: inline;">Delivery Type : </h4><text>' + dtype + '</text></div></div>';
+            // alert(add);
+            $("body").append(add); // Append new elements
+        }
+
+    </script>
+    
+</body>
+</html>
